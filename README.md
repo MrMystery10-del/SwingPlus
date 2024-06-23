@@ -5,8 +5,20 @@ certain operations and providing a more intuitive interface for Swing GUI develo
 
 SwingPlus exist current at a very early state to represent the idea for possible future development.
 It is orientated at NimbusUI.
-
-## Gradle
+### Maven
+```xml
+<dependency>
+  <groupId>com.swingplus</groupId>
+  <artifactId>swingplus</artifactId>
+  <version>0.0.1</version>
+</dependency>
+```
+### Gradle
+```kotlin
+dependencies {
+    implementation("com.swingplus:swingplus:0.0.1")
+}
+```
 
 ## Example usage
 
