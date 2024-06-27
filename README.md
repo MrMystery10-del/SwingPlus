@@ -5,16 +5,27 @@ certain operations and providing a more intuitive interface for Swing GUI develo
 
 SwingPlus exist current at a very early state to represent the idea for possible future development.
 It is orientated at NimbusUI.
-### Maven
-```xml
-<dependency>
-  <groupId>com.swingplus</groupId>
-  <artifactId>swingplus</artifactId>
-  <version>0.0.1</version>
-</dependency>
-```
+
 ### Gradle
+Since this library is currently only available on GitHub packages rather than on the Maven-Central, 
+you have to add some additional configuration to implement this library in your project.
+
+Keep in mind that `GITHUB_USERNAME` and `GITHUB_TOKEN` are secured environment variables.
+To declare environment variables on Windows, you have to use the command `setx <variable-name> <value>` in cmd.
+If you don't know how to generate a GitHub-Token, view this:
+[Generate tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token)
 ```kotlin
+repositories {
+    mavenCentral()
+    maven {
+        url = uri("https://maven.pkg.github.com/MrMystery10-del/SwingPlus")
+        credentials {
+            username = System.getenv("GITHUB_USERNAME")
+            password = System.getenv("GITHUB_TOKEN")
+        }
+    }
+}
+
 dependencies {
     implementation("com.swingplus:swingplus:0.0.1")
 }
