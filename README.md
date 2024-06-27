@@ -75,3 +75,9 @@ panel.add(button);
 
 Incase you want to modify the underlaying swing component, read the documentation of the facade classes.
 For JPanel you can use the method 'javax.swing.JPanel getSWING_PANEL()'
+
+## Contribution
+
+Contribution is welcome! If you want to start contributing to this project, take a look at the issues tab if there is anything you want to work on.
+Incase there is no issue for you, you can create yoru own issue if you found a bug or want to create a new feature.
+If you found or created an issue you want to work on, fork this repository, make your changes and create a pull request.
