@@ -75,6 +75,54 @@ panel.add(button);
 
 Incase you want to modify the underlaying swing component, read the documentation of the facade classes.
 For JPanel you can use the method 'javax.swing.JPanel getSWING_PANEL()'
+### Adding hover effects
+To all SwingPlus components you can add hover effects.
+Because of the early state of SwingPlus, adding hover effects to change graphics look like this:
+```java
+JPanel panel = new JPanel().whenHover(new HoverEffect<JPanel>()
+        .whenEnter(thisPanel -> {
+            javax.swing.JPanel p = thisPanel.getSWING_PANEL();
+            thisPanel.applyGraphics(graphics2D -> {
+                graphics2D.setColor(Color.RED);
+                graphics2D.fillRect(100, 100, 100, 100);
+            });
+            p.repaint();
+        }).whenExit(thisPanel -> {
+            javax.swing.JPanel p = thisPanel.getSWING_PANEL();
+            thisPanel.applyGraphics(graphics2D -> {
+                graphics2D.setColor(Color.CYAN);
+                graphics2D.fillRect(100, 100, 100, 100);
+            });
+            p.repaint();
+        })
+);
+```
+In late versions will be optimized to this:
+```java
+JPanel panel = new JPanel().whenHover(new HoverEffect<JPanel>()
+        .whenEnter(thisPanel -> {
+            thisPanel.applyGraphics(graphics2D -> {
+                graphics2D.setColor(Color.RED);
+                graphics2D.fillRect(100, 100, 100, 100);
+            });
+        }).whenExit(thisPanel -> {
+            thisPanel.applyGraphics(graphics2D -> {
+                graphics2D.setColor(Color.CYAN);
+                graphics2D.fillRect(100, 100, 100, 100);
+            });
+        })
+);
+```
+There is also the idea to add layers before and after graphic-components, so there will be no need to write a full new graphic component.
+The brainstorming idea looks like this:
+```java
+JPanel panel = new JPanel()
+        .applyGraphics(graphics2D -> graphics2D.fillRect(100, 100, 100, 100))
+        .whenHover(new HoverEffect<JPanel>()
+            .whenEnter(thisPanel -> thisPanel.applyGraphicsBefore(graphics2D -> graphics2D.setColor(Color.RED)))
+            .whenExit(thisPanel -> thisPanel.applyGraphicsBefore(graphics2D -> graphics2D.setColor(Color.CYAN)))
+        );
+```
 
 ## Contribution
 
